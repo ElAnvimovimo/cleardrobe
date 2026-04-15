@@ -91,11 +91,11 @@ const formatPickerDate = computed(() => {
   
   const parts = pickerDate.value.split('-')
   
-  // Verificamos que tengamos las 3 partes (año, mes, día)
   if (parts.length !== 3) return ''
 
-  // CORRECCIÓN TS: Asignamos valores por defecto para que nunca sean undefined
-  const [y = '', m = '', d = ''] = parts
+  const y = parts[0]!
+  const m = parts[1]!
+  const d = parts[2]!
 
   // Al usar el prefijo '+', convertimos a número de forma segura para TS
   return new Date(+y, +m - 1, +d).toLocaleDateString('es-MX', {

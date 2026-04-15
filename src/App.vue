@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import Landing from './pages/Landing.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <div id="app">
-    <Landing />
+    <RouterView></RouterView>
   </div>
 </template>
 

@@ -11,10 +11,7 @@ const goToLogin = (): void => {
 
 <template>
   <div class="min-h-screen bg-purple-100">
-    <Header>
-      <button @click="goToLogin" class="text-gray-600 hover:text-blue-600">Login</button>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">Sign Up</button>
-    </Header>
+    <Header> </Header>
 
     <main class="text-center mt-20">
       <RouterView />

@@ -41,7 +41,9 @@ const days = computed(() => {
   const first = new Date(year, month, 1).getDay()
   const total = new Date(year, month + 1, 0).getDate()
   const cells: Array<{ day: number | null; date: string | null }> = []
+  
   for (let i = 0; i < first; i++) cells.push({ day: null, date: null })
+  
   for (let d = 1; d <= total; d++) {
     const mm = String(month + 1).padStart(2, '0')
     const dd = String(d).padStart(2, '0')
@@ -92,9 +94,10 @@ const formatPickerDate = computed(() => {
   // Verificamos que tengamos las 3 partes (año, mes, día)
   if (parts.length !== 3) return ''
 
-  const [y, m, d] = parts
+  // CORRECCIÓN TS: Asignamos valores por defecto para que nunca sean undefined
+  const [y = '', m = '', d = ''] = parts
 
-  // Ahora y, m, y d son seguros de usar
+  // Al usar el prefijo '+', convertimos a número de forma segura para TS
   return new Date(+y, +m - 1, +d).toLocaleDateString('es-MX', {
     weekday: 'long', 
     day: 'numeric', 
@@ -112,11 +115,8 @@ const getOutfit = (date: string) => {
 
 <template>
   <div>
+    <div class="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
 
-    <!-- ── Calendar card ── -->
-    <div class="bg-white border border-gray-200 rounded-2xl p-5">
-
-      <!-- Header -->
       <div class="flex items-center justify-between mb-4">
         <button @click="prevMonth"
           class="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-gray-50 hover:text-gray-600 transition-all">
@@ -133,27 +133,23 @@ const getOutfit = (date: string) => {
         </button>
       </div>
 
-      <!-- Weekday labels -->
       <div class="grid grid-cols-7 mb-1">
-        <span v-for="d in DAYS_SHORT" :key="d"
+        <span v-for="dayLabel in DAYS_SHORT" :key="dayLabel"
           class="text-center text-xs font-semibold text-gray-400 uppercase tracking-wider py-1">
-          {{ d }}
+          {{ dayLabel }}
         </span>
       </div>
 
-      <!-- Loading -->
       <p v-if="calendarStore.loading" class="text-sm text-gray-400 text-center py-8">Cargando...</p>
 
-      <!-- Grid -->
       <div v-else class="grid grid-cols-7 gap-1">
         <div
           v-for="(cell, idx) in days"
           :key="idx"
-          class="min-h-[72px] rounded-xl p-1.5 flex flex-col gap-1 transition-all"
+          class="min-h-[72px] rounded-xl p-1.5 flex flex-col gap-1 transition-all border border-transparent"
           :class="{
-            'cursor-pointer hover:bg-purple-50 hover:border-purple-200 border border-transparent': cell.day,
-            'border border-transparent': !cell.day,
-            'bg-purple-50 !border-purple-200 border': isToday(cell.date),
+            'cursor-pointer hover:bg-purple-50 hover:border-purple-200': cell.day,
+            'bg-purple-50 !border-purple-200': isToday(cell.date),
             'bg-gray-50': cell.date && calendarStore.entries[cell.date],
           }"
           @click="handleCellClick(cell.date)"
@@ -164,17 +160,15 @@ const getOutfit = (date: string) => {
               {{ cell.day }}
             </span>
 
-            <!-- Assigned outfit chip -->
             <div v-if="cell.date && getOutfit(cell.date)"
               class="flex-1 bg-purple-100 rounded-lg px-1.5 py-1 flex flex-col justify-between min-h-0"
               title="Click para eliminar">
-              <p class="text-xs font-medium text-purple-700 leading-tight line-clamp-2">
+              <p class="text-[10px] font-medium text-purple-700 leading-tight line-clamp-2">
                 {{ getOutfit(cell.date)?.name }}
               </p>
               <span class="text-purple-300 text-xs self-end leading-none mt-1">×</span>
             </div>
 
-            <!-- Add hint -->
             <div v-else class="flex-1 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
               <span class="text-gray-300 text-lg leading-none">+</span>
             </div>
@@ -183,17 +177,14 @@ const getOutfit = (date: string) => {
       </div>
     </div>
 
-    <!-- ── Picker modal ── -->
     <Teleport to="body">
       <Transition name="fade">
         <div v-if="showPicker"
-          class="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-          style="background: rgba(0,0,0,0.4)"
+          class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40"
           @click.self="showPicker = false">
 
           <div class="bg-white rounded-t-2xl sm:rounded-2xl w-full max-w-sm mx-0 sm:mx-4 p-6 shadow-xl max-h-[80vh] overflow-y-auto">
 
-            <!-- Header -->
             <div class="flex justify-between items-start mb-5">
               <div>
                 <p class="text-xs text-gray-400 capitalize mb-0.5">{{ formatPickerDate }}</p>
@@ -205,13 +196,11 @@ const getOutfit = (date: string) => {
               </button>
             </div>
 
-            <!-- No outfits -->
             <div v-if="!outfitStore.items.length"
               class="flex flex-col items-center justify-center py-10 text-gray-300">
               <p class="text-sm">No tienes atuendos guardados</p>
             </div>
 
-            <!-- Outfit list -->
             <div v-else class="flex flex-col gap-2">
               <button
                 v-for="outfit in outfitStore.items"
@@ -236,7 +225,6 @@ const getOutfit = (date: string) => {
         </div>
       </Transition>
     </Teleport>
-
   </div>
 </template>
 

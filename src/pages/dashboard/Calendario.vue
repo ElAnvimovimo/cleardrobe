@@ -97,7 +97,6 @@ const formatPickerDate = computed(() => {
   const m = parts[1]!
   const d = parts[2]!
 
-  // Al usar el prefijo '+', convertimos a número de forma segura para TS
   return new Date(+y, +m - 1, +d).toLocaleDateString('es-MX', {
     weekday: 'long', 
     day: 'numeric', 

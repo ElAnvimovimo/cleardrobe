@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
-import logoImg from '../assets/carita.png'
 
 const emailValue    = ref('')
 const passwordValue = ref('')
@@ -21,7 +20,6 @@ const submit = async () => {
   }
 }
 </script>
-
 <template>
   <div class="min-h-screen bg-purple-100">
     <main class="text-center">
@@ -31,7 +29,7 @@ const submit = async () => {
             to="/"
             class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            <img class="w-8 h-8 mr-2" :src="logoImg" alt="logo" />
+            <img class="w-8 h-8 mr-2" src="/assets/carita.png" alt="logo" />
             ClearDrobe
           </RouterLink>
           <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

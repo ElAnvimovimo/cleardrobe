@@ -86,9 +86,19 @@ const assignOutfit = (outfit: any) => {
 
 const formatPickerDate = computed(() => {
   if (!pickerDate.value) return ''
-  const [y, m, d] = pickerDate.value.split('-')
+  
+  const parts = pickerDate.value.split('-')
+  
+  // Verificamos que tengamos las 3 partes (año, mes, día)
+  if (parts.length !== 3) return ''
+
+  const [y, m, d] = parts
+
+  // Ahora y, m, y d son seguros de usar
   return new Date(+y, +m - 1, +d).toLocaleDateString('es-MX', {
-    weekday: 'long', day: 'numeric', month: 'long'
+    weekday: 'long', 
+    day: 'numeric', 
+    month: 'long'
   })
 })
 

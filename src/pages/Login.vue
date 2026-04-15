@@ -3,11 +3,11 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
-const emailValue    = ref('')
+const emailValue = ref('')
 const passwordValue = ref('')
-const error         = ref('')
-const router        = useRouter()
-const auth          = useAuthStore()
+const error = ref('')
+const router = useRouter()
+const auth = useAuthStore()
 
 const submit = async () => {
   try {
@@ -24,17 +24,23 @@ const submit = async () => {
   <div class="min-h-screen bg-purple-100">
     <main class="text-center">
       <section class="bg-gray-50 dark:bg-gray-900">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div
+          class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+        >
           <RouterLink
             to="/"
             class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            <img class="w-8 h-8 mr-2" src="/assets/carita.png" alt="logo" />
+            <img class="w-8 h-8 mr-2" src="/assets/icon.png" alt="logo" />
             ClearDrobe
           </RouterLink>
-          <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div
+            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+          >
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              <h1
+                class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+              >
                 Sign in to your account
               </h1>
 
@@ -42,7 +48,10 @@ const submit = async () => {
 
               <div class="space-y-4 md:space-y-6">
                 <div>
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Your email
                   </label>
                   <input
@@ -55,7 +64,10 @@ const submit = async () => {
                   />
                 </div>
                 <div>
-                  <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Password
                   </label>
                   <input
@@ -75,11 +87,11 @@ const submit = async () => {
                   Login
                 </button>
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don't have an account yet?
-                <RouterLink to="/register" class="font-medium text-purple-600 hover:underline">
-                  Sign up
-                </RouterLink>
-              </p>
+                  Don't have an account yet?
+                  <RouterLink to="/register" class="font-medium text-purple-600 hover:underline">
+                    Sign up
+                  </RouterLink>
+                </p>
               </div>
             </div>
           </div>

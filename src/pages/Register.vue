@@ -59,7 +59,7 @@ const submit = async () => {
       <!-- Logo -->
       <div class="text-center mb-8">
         <RouterLink to="/" class="inline-flex items-center gap-2">
-          <img src="/assets/carita.png" class="h-8" alt="logo" />
+          <img src="/assets/icon.png" class="h-8" alt="logo" />
           <span class="text-lg font-semibold text-gray-900">Cleardrobe</span>
         </RouterLink>
       </div>

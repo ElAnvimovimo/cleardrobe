@@ -9,7 +9,7 @@ const router = useRouter()
     <!-- Nav -->
     <nav class="flex justify-between items-center px-8 py-4 border-b border-gray-100">
       <div class="flex items-center gap-2">
-        <img src="/assets/carita.png" class="h-7" alt="logo"/>
+        <img src="/assets/icon.png" class="h-7" alt="logo"/>
         <span class="font-semibold text-gray-900 text-sm">Cleardrobe</span>
       </div>
       <div class="flex items-center gap-3">

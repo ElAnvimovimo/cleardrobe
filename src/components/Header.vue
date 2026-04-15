@@ -3,7 +3,7 @@
     <nav class="px-4 lg:px-6 py-3 bg-purple-500">
       <div class="flex justify-between items-center mx-auto max-w-screen-xl">
         <RouterLink to="/" class="flex items-center gap-2">
-          <img src="/assets/carita.png" class="h-8" alt="ClearDrobe Logo"/>
+          <img src="/assets/icon.png" class="h-8" alt="ClearDrobe Logo" />
           <span class="text-white text-lg font-semibold">ClearDrobe</span>
         </RouterLink>
         <div class="flex items-center gap-2">
